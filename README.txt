@@ -1,7 +1,7 @@
 ******************************************************************************
 
-ftmap v 1.7
-===========
+ftmap v 1.8.3
+=============
 
 CONTENTS
     ... Usage
@@ -354,9 +354,9 @@ Known Problems
 the ship images etc. AFAIK this is a rounding error problem in the image 
 library and the workaround is to reduce the value (<=10).
 
-2) Anti aliasing algortihtm is a little flaky and doesn't work with color or
+2) FIXED in 1.8.3 Anti aliasing algortihtm is a little flaky and doesn't work with color or
 bitonal maps very well.  Its designed to and works with the conventional image 
-format (black background white foreground).
+format (black background white foreground). 
 
 3) Unrobust to problems in the data file format, will core dump.
 
@@ -368,21 +368,54 @@ files
 
 Authors
 -------
-ftmap is the IP of Alun Thomas, it was conceived by him and is all his work. I
-Tim Jones have only extended his work by adding various options and extending 
-the program and re-engineering the code to be a bit more maintainable and clear
+ftmap is the original IP of Alun Thomas, it was conceived by him and is all his work. I
+Tim Jones have extended his work by adding various options and extending 
+the program to add smart color compression and re-engineering the code to be more maintainable, robust and efficient 
 and creating the distribution and doscumentation.
 
 
 Distribution
 ------------
 This program is FREEWARE and can be distributed as long as you don't claim its
-yours or try to make money out of it. As the source code is included 
+yours or try to make money out of it (unlikely). As the source code is included 
 (unix only) you can modify and improve the program if you wish and feed it back
-to the user community via the FTGZG-L mailing list.
+to the user community via the FTGZG-L mailing list. Its now on Github too.
 
-New Features @ 1.7
-~~~~~~~~~~~~~~~~~~
+Release Notes
+--------------
+
+v 1.8.3
+~~~~~~~
+
+Fixed the re-color option using foregroundColor, this now repaints the sprites before 
+they are rotated giving much better anti-aliasing results.
+
+Increased max object to 20K and max object classes to 500.
+
+Created simple unit tests in example.sh
+
+Removed all gcc compiler warnings.
+
+v 1.8.2 
+~~~~~~~
+
+Certain resources in the ftmap init file no longer
+have default values if they are undefined these are:
+
+	foregroundColor
+	leaderColor
+	locusColor
+	
+They can be commented out in the init file by using the
+comment character ';' semi-colon or omitted all together.
+
+If a text label has a null value then the label will not
+be plotted. A null value is a line with nothing on it but
+a carriage return.
+
+v 1.7
+~~~~~
+
 -g option to draw a grid at 10x10 game unit intervals
 
 -r option to allow full color control via a color resource file

@@ -92,7 +92,7 @@
 
 #define PROGRAM "ftmap"
 #define VERSION "1.8.3"
-#define COPYRIGHT "Copyright Alun Thomas & Tim Jones 1997-2050"
+#define COPYRIGHT "Copyright 1997 Alun Thomas & Tim Jones"
 
 #ifdef WIN32
 #define SLASH "\\"
