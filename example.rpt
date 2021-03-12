@@ -1,0 +1,19 @@
+Example FT Report this is a simplification for illustrative purposes
+in reality you have to complicated parsing to extract the required
+information
+
+Ship: JASON
+Type: Omega
+Position: 15.7; 37.3
+Velocity: 5 
+Move:     1S+1
+Heading:  12
+
+Ship: NERGAL
+Type: Hyperion
+Position: 14.2; 28.3
+Velocity: 9
+Move:     +2
+Heading:  8
+
+
