@@ -24,7 +24,7 @@ Usage: ftmap -a -b -d -f output.gif -g -i imagedir -l -r resource_file -v
 ftmap reads a fomatted file from the standard input and produces a gif map
 of the data, according to the parameters contained within the file. ftmap
 does text clash management so that the labels on the map are positions for
-the best readability.
+the best readability. It is design for use with the game Full Thrust by gzg.com
 
 Example:
 
@@ -32,7 +32,6 @@ ftmap -b -i image -f example.gif < example.ft
 
 Produces a bitonal map (white background, black foreground) in the file 
 example.gif using the data in the file example.ft
-
 
 Program flags
 -------------
@@ -63,6 +62,8 @@ Program flags
    main elements of an ftmap, *ignored* if -b specified
 
 -v verbose mode it tells you whats its doing on
+
+-w wallpaper tile the background otherwise stretch it into the final bitmap size
 
 
 Format of data file
@@ -207,6 +208,9 @@ Example:
            |    #_#    |
            +-----------+
 
+
+Black is always mapped to transparent in the game object files. 
+
 The convention is for the image background to be black and the image foreground
 to be white, *breaking the convention will produce the wrong results*.
 
@@ -215,6 +219,7 @@ foreground various colors. For producing bitonal maps (white background black
 foreground) the conventional images are inverted by the program automatically.
 
 The images can be any size but typically not too big (33x33). 
+Large images take a very long time to process anythin over 120 px will be slow. 
 The images are scaled according to the scaling factor in the data file
 The images can be of any game object a ship, fighters, missiles, asteroids etc.
 
@@ -278,6 +283,11 @@ also a special resource as this changes the foreground color (white) of
 conventional images to the specified color. The results with non conventional
 images will be undefined. 
 
+Certain values should can be undefined by commenting out with ';'
+
+; foregroundColor - don't use this setting if color sprites or sprites not white on black
+; leaderColor - don't set this if you don't want lines draw from the label to the object
+; locusColor - don't set this if you don't want dot drawn at the exact location of the game object
 
 Formatting data file from game report
 -------------------------------------
@@ -296,7 +306,7 @@ file. These lines have the HEADER: so that the text filter can recognise them.
 Example:
 
 HEADER: FT Map Example
-HEADER: -
+HEADER: background.gif
 HEADER: 1
 HEADER: -15.0
 HEADER: 0.0
@@ -395,6 +405,8 @@ Increased max object to 20K and max object classes to 500.
 Created simple unit tests in example.sh
 
 Removed all gcc compiler warnings.
+
+Removed leader line from overlap tests if not used
 
 v 1.8.2 
 ~~~~~~~

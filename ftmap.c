@@ -1090,7 +1090,7 @@ void getArgs(int argc, char* argv[])
                     break;
                 }               
                 case 'B': {
-                    color=0;
+                    color = 0;
                     break;
                 }               
                 case 'D': {
@@ -2176,8 +2176,12 @@ Point getAnnoPosition
 			overlap = 0;
 			for (box_num = 0; box_num < BoxMgr_numberBoxes(); box_num++) {
 				overlap += Box_overlap(BoxMgr_get(box_num),text_box);
-				overlap += (Box_overlap(BoxMgr_get(box_num),leader_box) * 
-							LEADER_WEIGHTING);
+				
+				/* consider lines only if drawing them */
+				if ( leader_color != NOT_DEFINED ) {
+					overlap += (Box_overlap(BoxMgr_get(box_num),leader_box) * 
+								LEADER_WEIGHTING);
+					}
                 }
 
 			/* if the best position so far, calculate the best text position 
@@ -2457,13 +2461,6 @@ void createImage()
 		if (label_text_color == NOT_DEFINED) { 
 			label_text_color = gdImageColorAllocate(im_out, 96, 255, 96);
 		}
-		/* if (leader_color == NOT_DEFINED) { 		
-			leader_color = label_text_color;
-		}
-		if (locus_color == NOT_DEFINED) {         
-			locus_color = label_text_color;
-		}
-		*/
 		if (course_color == NOT_DEFINED) {         
 			course_color = gdImageColorAllocate(im_out, 96, 96, 255);
 		}
