@@ -402,7 +402,7 @@ they are rotated giving much better anti-aliasing results.
 
 Increased max object to 20K and max object classes to 500.
 
-Created simple unit tests in example.sh
+Created simple unit tests in unit-test.sh
 
 Removed all gcc compiler warnings.
 
